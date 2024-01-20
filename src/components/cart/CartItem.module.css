@@ -1,8 +1,8 @@
-.cart-item {
+.cartitem {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  border-bottom: 2px solid #8a2b06;
+  border-bottom: 2px solid #3f068a;
   padding: 1rem 0;
   margin: 1rem 0;
 }
@@ -21,7 +21,7 @@
 
 .price {
   font-weight: bold;
-  color: #8a2b06;
+  color: #2401a1;
 }
 
 .amount {
@@ -35,6 +35,7 @@
 .actions {
   display: flex;
   flex-direction: column;
+  width: 20%;
 }
 
 @media (min-width: 768px) {
@@ -43,13 +44,12 @@
   }
 }
 
-.cart-item button {
+.cartitem button {
   font: inherit;
   font-weight: bold;
   font-size: 1.25rem;
-  color: #8a2b06;
-  border: 1px solid #8a2b06;
-  width: 3rem;
+  color: #2502c5;
+  border: 1px solid #39068a;
   text-align: center;
   border-radius: 6px;
   background-color: transparent;
@@ -58,8 +58,8 @@
   margin: 0.25rem;
 }
 
-.cart-item button:hover,
-.cart-item button:active {
-  background-color: #8a2b06;
+.cartitem button:hover,
+.cartitem button:active {
+  background-color: #0a0274;
   color: white;
 }

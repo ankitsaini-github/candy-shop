@@ -4,17 +4,17 @@ function CartItem(props) {
   const price = `$${props.price.toFixed(2)}`;
 
   return (
-    <li className={classes['cart-item']}>
+    <li className={classes.cartitem}>
       <div>
         <h2>{props.name}</h2>
         <p>{props.description}</p>
         <div className={classes.summary}>
           <span className={classes.price}>{price}</span>
-          <span className={classes.amount}>x {props.qty}</span>
+          <span className={classes.amount}>{props.qty} Piece</span>
         </div>
       </div>
       <div className={classes.actions}>
-        <button onClick={props.onRemove}>x</button>
+        <button onClick={props.onRemove}>Remove</button>
       </div>
     </li>
   );
