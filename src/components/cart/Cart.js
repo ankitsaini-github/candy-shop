@@ -6,8 +6,9 @@ import { useContext } from 'react';
 // [{id:1,name:'eclair',description:'choco',price:10, qty:2},{id:2,name:'milkybar',description:'white',price:20,qty:3}]
 function Cart(props) {
   const ctx=useContext(CartContext)
-  const cartItemRemoveHandler = (id) => {
-    ctx.delfromCart(id);
+  const cartItemRemoveHandler = (id,price,qty) => {
+    const deduct=Number(price)*Number(qty)
+    ctx.delfromCart(id,deduct);
   };
   const cartItems = (
     <ul className='cart-items'>
@@ -18,7 +19,7 @@ function Cart(props) {
           description={item.description}
           qty={item.qty}
           price={item.price}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onRemove={cartItemRemoveHandler.bind(null, item.id,item.price,item.qty)}
         />
       ))}
     </ul>
