@@ -1,0 +1,33 @@
+.candy-item{
+    width:100%;
+    background-color: azure;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    border: 2px solid rgb(207, 225, 255);
+    border-radius: 5px;
+}
+.candy-info{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    font-family:'Times New Roman', Times, serif;
+}
+.candy-info span{
+    margin-right: 40px;
+}
+.candybtns{
+    display: flex;
+}
+.add-btn{
+    border: 2px solid rgb(31, 109, 1);
+    border-radius: 5px;
+    background-color:rgb(1, 158, 27);
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    margin-left: 10px;
+}

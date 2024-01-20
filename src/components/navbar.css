@@ -1,0 +1,39 @@
+.navbar{
+    width: 100%;
+    height: 5rem;
+    background-color: rgb(175, 217, 253);
+    display: flex;
+    justify-content: space-around;
+}
+.navbar-brand{
+    font-size: 2rem;
+    font-weight: bolder;
+    justify-content: flex-start;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.cartbtn{
+    display: flex;
+    height: 3rem;
+    width: 10%;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid rgb(181, 103, 255);
+    border-radius: 20px;
+    background-color: rgb(154, 45, 255);
+    padding: 0 70px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+}
+.cartvalue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(181, 103, 255);
+    border-radius: 20px;
+    background-color: rgb(192, 124, 255);
+    padding: 3px 15px;
+}
