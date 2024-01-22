@@ -5,7 +5,7 @@ function CartItem(props) {
 
   return (
     <li className={classes.cartitem}>
-      <div>
+      <div className={classes.cartiteminfo}>
         <h2>{props.name}</h2>
         <p>{props.description}</p>
         <div className={classes.summary}>

@@ -12,6 +12,7 @@
 .candy-info{
     display: flex;
     justify-content: space-around;
+    width: 70%;
     font-size: 20px;
     font-family:'Times New Roman', Times, serif;
 }
