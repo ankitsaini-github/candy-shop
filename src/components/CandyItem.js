@@ -20,9 +20,9 @@ const CandyItem=(props)=>{
     return(
         <li id={props.id} className='candy-item'>
             <div className='candy-info'>
-                <span>name: {props.name}</span>
-                <span> desc: {props.description}</span>
-                <span>price: Rs {props.price}</span>
+                <span>Name: {props.name}</span>
+                <span> Desc: {props.description}</span>
+                <span>Price: Rs {props.price}</span>
             </div>
             <div className='candyaddbtns'>
             <button className='add-btn' type='click' value="1" onClick={addtoCartHandler}>Buy 1</button>

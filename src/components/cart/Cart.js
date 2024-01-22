@@ -30,7 +30,7 @@ function Cart(props) {
       {cartItems}
       <div className="total">
         <span>Total Amount</span>
-        <span>rs {ctx.totalAmount}</span>
+        <span>Rs {ctx.totalAmount}</span>
       </div>
       <div className="actions">
         <button className='button--alt' onClick={props.onClose}>
