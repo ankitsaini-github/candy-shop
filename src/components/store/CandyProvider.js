@@ -15,7 +15,8 @@ JSON.parse(localStorage.getItem("candy-cart")) === null
 function CandyProvider(props) {
   const [CartList,setCartList]=useState(storedcart);
   const [Products, setProducts] = useState(storedProducts);
-  const [Cartvalue, setCartvalue] = useState(0);
+  const storedtotal=CartList.reduce((acc,curr)=>acc+(curr.price*curr.qty),0)
+  const [Cartvalue, setCartvalue] = useState(storedtotal);
   
   useEffect(() => {
     localStorage.setItem("candy-list", JSON.stringify(Products));
