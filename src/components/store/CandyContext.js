@@ -6,7 +6,6 @@ addProduct:(product)=>{},
 })
 export const CartContext= React.createContext({
   cartlist:[],
-  totalAmount:0,
   addtoCart:(product)=>{},
   delfromCart:(id,price)=>{},
   })

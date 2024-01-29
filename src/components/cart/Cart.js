@@ -6,6 +6,7 @@ import { useContext } from 'react';
 // [{id:1,name:'eclair',description:'choco',price:10, qty:2},{id:2,name:'milkybar',description:'white',price:20,qty:3}]
 function Cart(props) {
   const ctx=useContext(CartContext)
+  const total=ctx.cartlist.reduce((acc,curr)=>acc+(curr.price*curr.qty),0)
   const cartItemRemoveHandler = (id,price,qty) => {
     const deduct=Number(price)*Number(qty)
     ctx.delfromCart(id,deduct);
@@ -14,12 +15,12 @@ function Cart(props) {
     <ul className='cart-items'>
       {ctx.cartlist.map((item) => (
         <CartItem
-          key={item.id}
+          key={item.cid}
           name={item.name}
           description={item.description}
           qty={item.qty}
           price={item.price}
-          onRemove={cartItemRemoveHandler.bind(null, item.id,item.price,item.qty)}
+          onRemove={cartItemRemoveHandler.bind(null, item.cid,item.price,item.qty)}
         />
       ))}
     </ul>
@@ -30,7 +31,7 @@ function Cart(props) {
       {cartItems}
       <div className="total">
         <span>Total Amount</span>
-        <span>Rs {ctx.totalAmount}</span>
+        <span>Rs {total}</span>
       </div>
       <div className="actions">
         <button className='button--alt' onClick={props.onClose}>

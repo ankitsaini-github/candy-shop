@@ -1,36 +1,95 @@
 import { useEffect, useState } from "react";
 import CandyContext,{CartContext} from "./CandyContext";
 
-const storedProducts =
-  JSON.parse(localStorage.getItem("candy-list")) === null
-    ? []
-    : JSON.parse(localStorage.getItem("candy-list"));
-
-const storedcart =
-JSON.parse(localStorage.getItem("candy-cart")) === null
-  ? []
-  : JSON.parse(localStorage.getItem("candy-cart"));
+const api='https://65b7827746324d531d54c82d.mockapi.io/'
 
 
 function CandyProvider(props) {
-  const [CartList,setCartList]=useState(storedcart);
-  const [Products, setProducts] = useState(storedProducts);
-  const storedtotal=CartList.reduce((acc,curr)=>acc+(curr.price*curr.qty),0)
-  const [Cartvalue, setCartvalue] = useState(storedtotal);
-  
-  useEffect(() => {
-    localStorage.setItem("candy-list", JSON.stringify(Products));
-    localStorage.setItem("candy-cart", JSON.stringify(CartList));
-  }, [Products,CartList]);
+  const [CartList,setCartList]=useState([]);
+  const [Products, setProducts] = useState([]);
+
+  const getcloudstore=async()=>{
+    try{
+      const res=await fetch(api+'candystore/1')
+      const data= await res.json()
+      if(data){
+        setProducts(data.store)
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const updatecloudstore=async(updatedstore)=>{
+    try{
+      const res=await fetch(api+'candystore/1',{
+        method:'PUT',
+        body:JSON.stringify({
+          store:updatedstore
+        }),
+        headers:{
+          'Content-Type':'application/json'
+        }
+      })
+      if(!res.ok){
+        throw new Error('got error')
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const getcloudcart= async()=>{
+    try{
+      const res=await fetch(api+'candycart/1')
+      if(!res.ok){
+        throw new Error('got error')
+      }
+      const data= await res.json()
+      if(data){
+        setCartList(data.cart)
+      }
+
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const updatecloudcart= async(updatedItems)=>{
+    try{
+      const res=await fetch(api+'candycart/1',{
+        method:'PUT',
+        body:JSON.stringify({
+          cart:updatedItems
+        }),
+        headers:{
+          'Content-Type':'application/json'
+        }
+      })
+      if(!res.ok){
+        throw new Error('got error')
+      }
+
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{
+    getcloudstore()
+    getcloudcart()
+  },[])
 
   const addProductHandler = (product) => {
+    const updatedstore=[...Products,product]
     setProducts((prev) => [product,...prev])
+    updatecloudstore(updatedstore)
   };
 
   const addtocartHandler=(candy) => {
-    const updatedTotalAmount = Number(Cartvalue) + Number(candy.price) * Number(candy.qty);
+
       const existingCartItemIndex = CartList.findIndex(
-        (item) => item.id === candy.id
+        (item) => item.cid === candy.cid
       );
       const existingCartItem = CartList[existingCartItemIndex];
       let updatedItems;
@@ -44,15 +103,17 @@ function CandyProvider(props) {
       } else {
         updatedItems = CartList.concat(candy);
       }
+     updatecloudcart(updatedItems)
     setCartList(updatedItems)
-    setCartvalue(updatedTotalAmount)
+
   }
 
 
   const delfromcartHandler=(idToRemove,price) => {
-    const newArr = CartList.filter((candy) => candy.id !== idToRemove);
+    const newArr = CartList.filter((candy) => candy.cid !== idToRemove);
+    updatecloudcart(newArr)
     setCartList(newArr)
-    setCartvalue((prev) => prev-Number(price))
+
   }
 
   const productCtx = {
@@ -62,7 +123,6 @@ function CandyProvider(props) {
 
   const cartctx={
   cartlist:CartList,
-  totalAmount:Cartvalue,
   addtoCart:addtocartHandler,
   delfromCart:delfromcartHandler,
   }

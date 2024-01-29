@@ -11,9 +11,8 @@ const CandyItem=(props)=>{
             description:props.description,
             price:Number(props.price),
             qty:Number(e.target.value),
-            id:`c_${props.id}`,
+            cid:`c_${props.id}`,
         }
-        console.log(candy.price)
         ctx.addtoCart(candy)
     }
 

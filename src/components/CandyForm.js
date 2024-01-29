@@ -9,8 +9,8 @@ const CandyForm=()=>{
         const candy={
             name:e.target.cname.value,
             description: e.target.cdesc.value,
-            price: e.target.cprice.value,
-            id: Math.random().toString(16).slice(2),
+            price: Number(e.target.cprice.value),
+            sid: Math.random().toString(16).slice(2),
         }
         ctx.addProduct(candy);
         e.target.cname.value='';

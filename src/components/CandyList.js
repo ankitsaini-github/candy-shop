@@ -14,8 +14,8 @@ const CandyList = () => {
         {ctx.products.map((product) => {
           return (
             <CandyItem
-              key={product.id}
-              id={product.id}
+              key={product.sid}
+              id={product.sid}
               name={product.name}
               price={product.price}
               description={product.description}
